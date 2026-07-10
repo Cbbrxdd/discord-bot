@@ -2,7 +2,7 @@ import { Events } from "discord.js";
 
 export default {
   name: Events.InteractionCreate,
-  execute: async (interaction) => {
+  execute: async (int) => {
 
     
 

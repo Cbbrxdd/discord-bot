@@ -13,6 +13,11 @@
   "dependencies": {
     "discord.js": "^14.26.5",
     "dotenv": "^17.4.2",
-    "glob": "^13.0.6"
+    "glob": "^13.0.6",
+    "https-proxy-agent": "^9.1.0",
+    "undici": "6.24.1"
+  },
+  "overrides": {
+    "undici": "6.24.1"
   }
 }
