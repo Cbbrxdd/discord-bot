@@ -53,4 +53,20 @@ for (const file of messageCommandFiles) {
   client.messageCommands.set(command.name, command);
 }
 
+client.SlashCommands = new Collection();
+client.ButtonCommands = new Collection();
+client.ModalCommands = new Collection();
+client.SelectCommands = new Collection();
+client.globalCommands = [];
+
+const intCommandsFiles = globSync("Src/Commands/Interaction/**/*.js");
+for (const file of intCommandsFiles) {
+  const commandName = file.split('\\')[file.split('\\').length - 2]
+  const { default: command } = await import(pathToFileURL(path.resolve(file)));
+  if (commandName == "SlashCommands") {
+    client[commandName].set(command.name, command);
+    client.globalCommands.push(command.commandData);
+  } else client[commandName].set(command.customId, command);
+}
+
 client.login(process.env.token);
