@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { ActivityType, Client, Partials, Collection } from "discord.js";
+import { ActivityType, Client, Partials, Collection, Events } from "discord.js";
 import { globSync } from "glob";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
