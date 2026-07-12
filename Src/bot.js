@@ -2,7 +2,7 @@ import { Client, Collection } from "discord.js";
 import path from "node:path";
 import { loadFiles } from "../Core/Utils/loadFiles.js";
 
-const client = new Client(global.config.clientOptions);
+const client = global.client = new Client(global.config.clientOptions);
 
 client.messageCommands = new Collection();
 client.SlashCommands = new Collection();
@@ -34,6 +34,7 @@ for (const { file, content: command } of await loadFiles("Src/Commands/Interacti
     console.warn(`⚠️ Bilinmeyen komut tipi: ${type} (${file})`);
   }
 }
+
 
 await client.login(process.env.token);
 

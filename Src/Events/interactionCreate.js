@@ -25,7 +25,7 @@ export default {
       if (interaction.isChatInputCommand()) {
         await interaction.deferReply({ ephemeral: true });
       }
-      await command.execute(client, interaction, embed);
+      await command.execute(client, interaction, embed, global.functions.emojis);
     } catch (error) {
       console.error(error);
       await errorMessage(interaction, embed);
