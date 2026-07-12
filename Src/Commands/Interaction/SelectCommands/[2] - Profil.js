@@ -3,38 +3,21 @@ import { AttachmentBuilder } from "discord.js";
 export default {
     customId: "userInfo-profil",
     execute: async (client, int, embed, emojis) => {
-        const userId = int.customId;
+        const result = await global.functions.resolveUser(client, int, int.customId);
 
-        let kullanici;
-        let status = "offline"; // varsayılan: presence bilgisi yoksa
-
-        // --- 1. Önce guild üzerinden member çekmeyi dene (status bilgisi için) ---
-        if (int.guild) {
-            try {
-                const member = await int.guild.members.fetch(userId);
-                kullanici = member.user;
-                status = member.presence?.status ?? "offline";
-            } catch (error) { }
+        if (!result) {
+            return await int.update({
+                embeds: [embed.setDescription("Kullanıcı bilgilerine ulaşılamadı.")],
+                components: [],
+            });
         }
 
-        // --- 2. Guild yoksa (DM) ya da fetch başarısız olduysa client'tan çek ---
-        if (!kullanici) {
-            try {
-                kullanici = await client.users.fetch(userId);
-                // client.users.fetch ile presence bilgisi asla gelmez, status "offline" kalır
-            } catch (error) {
-                console.log(error);
-                return await int.update({
-                    embeds: [embed.setDescription("Kullanıcı bilgilerine ulaşılamadı.")],
-                    components: [],
-                });
-            }
-        }
-
-        // --- Görsel oluşturma ---
+        const { kullanici, status } = result;
 
         const buffer = await global.functions.generateProfileCard({ user: kullanici, status });
         const attachment = new AttachmentBuilder(buffer, { name: "cabbarxdd.png" });
+
+        const userInfoMenü = global.functions.buildUserInfoMenu(int.customId, "userInfo-profil"); // aktif seçenek artık "profil"
 
         await int.update({
             embeds: [
@@ -42,6 +25,7 @@ export default {
                     .setDescription(`${kullanici.username} adlı kullanıcının profil kartı`)
                     .setImage("attachment://cabbarxdd.png"),
             ],
+            components: [userInfoMenü], // bunu eklemeyi unutma!
             files: [attachment],
         });
     },

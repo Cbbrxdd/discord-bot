@@ -32,6 +32,8 @@ export default {
         ctx.roundRect(0, 0, width, height, radius);
         ctx.closePath();
         ctx.clip();
+        ctx.fillStyle = backgroundColor;
+        ctx.fillRect(0, 0, width, height);
 
         // --- Arka plan (nameplate varsa onu kullan, yoksa düz renk) ---
         if (nameplateUrl) {
@@ -40,8 +42,6 @@ export default {
                 ctx.drawImage(nameplate, 0, 0, width, height);
             } catch (error) {
                 console.log("Nameplate yüklenemedi:", error.message);
-                ctx.fillStyle = backgroundColor;
-                ctx.fillRect(0, 0, width, height);
             }
         } else {
             ctx.fillStyle = backgroundColor;
