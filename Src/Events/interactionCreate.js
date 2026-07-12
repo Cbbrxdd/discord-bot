@@ -4,7 +4,7 @@ const interactionHandlers = [
   { check: (i) => i.isChatInputCommand(), map: "SlashCommands", key: (i) => i.commandName },
   { check: (i) => i.isButton(), map: "ButtonCommands", key: (i) => i.customId },
   { check: (i) => i.isModalSubmit(), map: "ModalCommands", key: (i) => i.customId },
-  { check: (i) => i.isStringSelectMenu(), map: "SelectCommands", key: (i) => i.customId },
+  { check: (i) => i.isStringSelectMenu(), map: "SelectCommands", key: (i) => i.values[0] },
 ];
 
 export default {
@@ -40,7 +40,7 @@ const errorMessage = async (interaction, embed) => {
         "Bir hata oluştu. Lütfen daha sonra tekrar deneyin. Sorun devam ederse destek ekibiyle iletişime geçiniz."
       ),
     ],
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral
   };
 
   try {

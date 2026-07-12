@@ -1,12 +1,11 @@
-import { SlashCommandBuilder, EmbedBuilder, Colors, MessageFlags } from "discord.js";
+import { SlashCommandBuilder, EmbedBuilder, Colors } from "discord.js";
 
 export default {
   name: "ping",
-  flags: MessageFlags.SuppressEmbeds,
   commandData: new SlashCommandBuilder().setName("ping").setDescription("Bot'un ve Discord'un ping değerlerini gönderir."),
   execute: async (client, int, embed, emojis) => {
 
-    const sent = await int.followUp({embeds: [new EmbedBuilder().setDescription("⏳Ping Hesaplanıyor...").setColor(Colors.Gold)]});
+    const sent = await int.followUp({ embeds: [new EmbedBuilder().setDescription("⏳Ping Hesaplanıyor...").setColor(Colors.Gold)] });
 
     await int.editReply({
       embeds: [

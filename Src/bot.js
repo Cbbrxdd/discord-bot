@@ -22,7 +22,7 @@ for (const { content: command } of await loadFiles("Src/Commands/Message/**/*.js
 }
 
 // --- Interaction komutlarını yükle ---
-for (const { file, content: command } of await loadFiles("Src/Commands/Interaction/**/*.js")) {
+for (const { file, content: command } of await loadFiles("Src/Commands/Interaction/**/**/*.js")) {
   const type = path.basename(path.dirname(file));
 
   if (type === "SlashCommands") {
