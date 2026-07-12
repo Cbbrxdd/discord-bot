@@ -1,4 +1,4 @@
-import { Events, EmbedBuilder, Colors } from "discord.js";
+import { Events, EmbedBuilder, Colors, MessageFlags } from "discord.js";
 
 const interactionHandlers = [
   { check: (i) => i.isChatInputCommand(), map: "SlashCommands", key: (i) => i.commandName },
@@ -13,7 +13,7 @@ export default {
     const client = interaction.client;
     const embed = new EmbedBuilder()
       .setColor(Colors.DarkBlue)
-      .setFooter({ text: `${client.user.username} 💞 Cabbarxdd` });
+      .setFooter({ text: `${client.user.username} 💞 Cabbarxdd`, iconURL: client.user.displayAvatarURL({ size: 1024 }) });
 
     const handler = interactionHandlers.find((h) => h.check(interaction));
     if (!handler) return;
@@ -23,7 +23,7 @@ export default {
 
     try {
       if (interaction.isChatInputCommand()) {
-        await interaction.deferReply({ ephemeral: true });
+        await interaction.deferReply({ flags: command.flags || 0 });
       }
       await command.execute(client, interaction, embed, global.functions.emojis);
     } catch (error) {
