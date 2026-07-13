@@ -13,15 +13,15 @@ export default {
             });
         }
 
-        const { kullanici, status } = result;
+        const { user, status } = result;
 
         const userInfoMenü = global.functions.buildUserInfoMenu(int.customId, "userInfo-avatar"); // aktif seçenek artık "profil"
 
         const embeds = [
             embed
                 .setAuthor({ name: int.user.globalName || int.user.username, iconURL: int.user.displayAvatarURL() })
-                .setDescription(`${kullanici.globalName || kullanici.username} isimli kullanıcıya ait avatar.\n[🔗 Avatar Url](${kullanici.displayAvatarURL({ size: 1024 })})`)
-                .setImage(kullanici.displayAvatarURL({ size: 1024 })),
+                .setDescription(`${user.globalName || user.username} isimli kullanıcıya ait avatar.\n[🔗 Avatar Url](${user.displayAvatarURL({ size: 1024 })})`)
+                .setImage(user.displayAvatarURL({ size: 1024 })),
         ]
 
         await int.update({ embeds, components: [userInfoMenü], attachments: [] });

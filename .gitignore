@@ -143,5 +143,4 @@ vite.config.ts.timestamp-*
 .vite/
 
 # Extras
-*.md
-!README.md
+*.js.md

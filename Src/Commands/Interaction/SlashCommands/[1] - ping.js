@@ -11,7 +11,7 @@ export default {
       embeds: [
         new EmbedBuilder().setColor(Colors.Green).setFields([
           {
-            name: `${emojis("917756discord")} Discord Ping`,
+            name: `${emojis("discord")} Discord Ping`,
             value: `${client.ws.ping}ms`,
             inline: true,
           },
@@ -21,7 +21,7 @@ export default {
             inline: true,
           },
           {
-            name: `${emojis("521449bot")} Bot Ping`,
+            name: `${emojis("bot")} Bot Ping`,
             value: `${sent.createdTimestamp - int.createdTimestamp}ms`,
             inline: true,
           },

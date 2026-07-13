@@ -13,8 +13,8 @@ export default {
     await sent.edit({
       embeds: [
         new EmbedBuilder().setColor(Colors.Green).setFields([
-            { name: `${emojis("917756discord")} Discord Ping`, value: `${client.ws.ping}ms`, inline: true },
-            { name: `${emojis("521449bot")} Bot Ping`, value: `${botPing}ms`, inline: true },
+          { name: `${emojis("discord")} Discord Ping`, value: `${client.ws.ping}ms`, inline: true },
+          { name: `${emojis("bot")} Bot Ping`, value: `${botPing}ms`, inline: true },
         ]),
       ],
     });
